@@ -18,6 +18,19 @@
     </style>
 </head>
 <body>
+    <!-- ハンバーガーメニュー -->
+    <nav id="hamburger-menu" class="hamburger-menu">
+        <div class="hamburger-menu-bg" id="hamburger-bg"></div>
+        <div class="hamburger-menu-panel">
+            <button class="hamburger-menu-close" id="hamburger-close">×</button>
+            <ul class="hamburger-menu-list">
+                <li><a href="#header" id="menu-home">ホーム</a></li>
+                <li><a href="#booth-slide" id="menu-booth">出店紹介</a></li>
+                <li><a href="#access" id="menu-access">アクセス</a></li>
+                <li><a href="#Footer" id="menu-footer">フッター</a></li>
+            </ul>
+        </div>
+    </nav>
     <div id="header">
         <h1 id="header-text">第78回　高輪学園高学祭</h1>
         <div id="header-logo">
@@ -27,7 +40,7 @@
         
     </div>
     <div id="Main">
-    <img src="DNP 秀英初号明朝 Std.pdf.pdf" id="Img1">
+    <img src="DNP 秀英初号明朝 Std_page-0001.jpg" id="Img1">
     </div>
     <div id="Second">
         <div id="White-Board1">
@@ -39,6 +52,72 @@
             <h2 id="bun-2">第78回高学祭のテーマである「初風」には、新たな季節の訪れの最初に吹く風という意味があります。そして今年、高輪学園は140周年という節目の年を迎えるにあたり、今年の高学祭が高輪学園の「初風」となって欲しいと思い、このようなテーマとなりました。加えて、今年は来場者10000人を目標に掲げております。昨年、一昨年と9000人前後のお客様にご来場頂けております、なので今年こそ大台の10000人を達成したいと思っておりますので、ぜひご来場ください。</h2> 
         </div>   
     </div>
+    <!-- アクセス・禁止事項セクション ここから -->
+    <div style="height:64px;"></div>
+    <div class="info-section">
+    <!-- 出店紹介スライドショーゾーン ここから -->
+    <div class="booth-slider-section">
+        <h2 class="booth-slider-title">出店紹介</h2>
+        <div class="booth-slider">
+            <button class="booth-slider-btn" id="booth-prev">&#9664;</button>
+            <div class="booth-slide" id="booth-slide">
+                <!-- 中一スライド -->
+                <div class="booth-slide-item">
+                    <h3>中一の出店</h3>
+                    <ul style="display:none;"></ul>
+                    <div class="booth-slide-prep">準備中</div>
+                </div>
+                <!-- 中二スライド -->
+                <div class="booth-slide-item">
+                    <h3>中二の出店</h3>
+                    <ul style="display:none;"></ul>
+                    <div class="booth-slide-prep">準備中</div>
+                </div>
+                <!-- 中三スライド -->
+                <div class="booth-slide-item">
+                    <h3>中三の出店</h3>
+                    <ul style="display:none;"></ul>
+                    <div class="booth-slide-prep">準備中</div>
+                </div>
+                <!-- 高一スライド -->
+                <div class="booth-slide-item">
+                    <h3>高一の出店</h3>
+                    <ul style="display:none;"></ul>
+                    <div class="booth-slide-prep">準備中</div>
+                </div>
+                <!-- 高二スライド -->
+                <div class="booth-slide-item">
+                    <h3>高二の出店</h3>
+                    <ul style="display:none;"></ul>
+                    <div class="booth-slide-prep">準備中</div>
+                </div>
+            </div>
+            <button class="booth-slider-btn" id="booth-next">&#9654;</button>
+        </div>
+    </div>
+    <!-- 出店紹介スライドショーゾーン ここまで -->
+        <h2 class="info-title">アクセス</h2>
+        <p class="info-text">
+            <b>会場：</b>高輪学園<br>
+            <b>住所：</b>東京都港区高輪2-1-32<br>
+            <b>最寄り駅：</b>
+            都営浅草線「泉岳寺駅」徒歩5分／
+            JR「高輪ゲートウェイ駅」徒歩10分／
+            東京メトロ南北線・都営三田線「白金高輪駅」徒歩10分<br>
+            <a href="https://maps.app.goo.gl/2Qw8k8k8k8k8k8k8A" target="_blank" rel="noopener noreferrer" class="info-map-link">Googleマップで見る</a>
+        </p>
+        <div class="info-space"></div>
+        <h2 class="info-title">禁止事項</h2>
+        <ul class="info-list">
+            <li>危険物の持ち込み</li>
+            <li>敷地内での喫煙・飲酒</li>
+            <li>許可のない撮影・録音</li>
+            <li>他の来場者や近隣住民への迷惑行為</li>
+            <li>その他、運営が不適切と判断した行為</li>
+        </ul>
+        <p class="info-note">ご理解とご協力をお願いいたします。</p>
+    </div>
+    <!-- アクセス・禁止事項セクション ここまで -->
     <div id="Footer">
         <div id="Footer-logo">
             <a href="https://www.takanawa.ed.jp">
@@ -49,4 +128,73 @@
             
         </div>
     </div>
+</body>
+<script>
+// メニュー内ボタンのスムーズスクロール
+function scrollToId(id) {
+    const el = document.getElementById(id);
+    if (el) {
+        el.scrollIntoView({behavior: 'smooth'});
+        if (menu) menu.classList.remove('open');
+    }
+}
+const menuHome = document.getElementById('menu-home');
+const menuBooth = document.getElementById('menu-booth');
+const menuAccess = document.getElementById('menu-access');
+const menuFooter = document.getElementById('menu-footer');
+if (menuHome) menuHome.onclick = e => { e.preventDefault(); scrollToId('header'); };
+if (menuBooth) menuBooth.onclick = e => { e.preventDefault(); scrollToId('booth-slide'); };
+if (menuAccess) menuAccess.onclick = e => { e.preventDefault(); scrollToId('access'); };
+if (menuFooter) menuFooter.onclick = e => { e.preventDefault(); scrollToId('Footer'); };
+// ハンバーガーメニュー開閉
+const hum = document.getElementById('header-hum');
+const menu = document.getElementById('hamburger-menu');
+const closeBtn = document.getElementById('hamburger-close');
+const bg = document.getElementById('hamburger-bg');
+if (hum && menu && closeBtn && bg) {
+    hum.style.cursor = 'pointer';
+    hum.onclick = () => menu.classList.add('open');
+    closeBtn.onclick = () => menu.classList.remove('open');
+    bg.onclick = () => menu.classList.remove('open');
+}
+// 出店紹介スライドショー強化版
+const slide = document.getElementById('booth-slide');
+const items = slide ? Array.from(slide.children) : [];
+let idx = 0;
+function updateSlide() {
+    items.forEach((el, i) => {
+        el.style.transform = `translateX(${(i-idx)*100}%)`;
+        el.style.opacity = (i === idx) ? '1' : '0.5';
+        el.style.zIndex = (i === idx) ? '2' : '1';
+    });
+}
+if (slide && items.length > 0) {
+    updateSlide();
+    document.getElementById('booth-prev').onclick = () => {
+        idx = (idx - 1 + items.length) % items.length;
+        updateSlide();
+    };
+    document.getElementById('booth-next').onclick = () => {
+        idx = (idx + 1) % items.length;
+        updateSlide();
+    };
+    // スワイプ対応（スマホ用）
+    let startX = null;
+    slide.addEventListener('touchstart', e => {
+        startX = e.touches[0].clientX;
+    });
+    slide.addEventListener('touchend', e => {
+        if (startX === null) return;
+        let endX = e.changedTouches[0].clientX;
+        if (endX - startX > 50) {
+            idx = (idx - 1 + items.length) % items.length;
+            updateSlide();
+        } else if (startX - endX > 50) {
+            idx = (idx + 1) % items.length;
+            updateSlide();
+        }
+        startX = null;
+    });
+}
+</script>
 </body>
