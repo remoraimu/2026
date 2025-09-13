@@ -577,7 +577,7 @@ body{
 
     #info-section{
         font-size: 1.2rem;
-        width:100%;
+        width:90vw;
         height: auto;
     }
     #Img1{
@@ -586,5 +586,8 @@ body{
         vertical-align: bottom;
         margin:0%;
         background-attachment: fixed;
+    }
+    #white-Board1{
+        display: none;
     }
 }
