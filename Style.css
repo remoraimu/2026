@@ -580,4 +580,11 @@ body{
         width:100%;
         height: auto;
     }
+    #Img1{
+        height: 50vh;
+        width:100vw;
+        vertical-align: bottom;
+        margin:0%;
+        background-attachment: fixed;
+    }
 }
