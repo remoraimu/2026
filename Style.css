@@ -568,7 +568,7 @@ body{
     }
     #bun-2{
         max-width: 90vw;
-        margin: 5vh auto 0 auto;
+        margin: 0;
     }
     #header-text{
         font-size: 1.1rem;
@@ -577,7 +577,7 @@ body{
 
     #info-section{
         font-size: 1.2rem;
-        width:fit-content;
+        width:100%;
         height: auto;
     }
 }
