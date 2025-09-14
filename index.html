@@ -1,28 +1,489 @@
 <!DOCTYPE html>
+<html lang="ja">
 <head>
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="cache-control" content="no-cache" />
     <meta http-equiv="expires" content="0" />
-
     <meta charset="UTF-8">
     <title>第78回　高輪学園高学祭　特設サイト</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="Style.css">
-    <link rel="icon" href="favicon.ico">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" href="favicon.ico">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@100..900&family=Rubik+80s+Fade&family=Train+One&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Playwrite+CO:wght@100..400&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap');
+        
+        /* リセット */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ベーススタイル（モバイルファースト） */
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            background: linear-gradient(135deg, #5f9ea0 0%, #4682b4 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ヘッダー - モバイル最適化 */
+        #header {
+            position: fixed;
+            top: 10px;
+            left: 5%;
+            right: 5%;
+            height: 60px;
+            background: rgba(240, 248, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1000;
+            border: 2px solid rgba(23, 107, 135, 0.3);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        #header-text {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #176b87;
+        }
+
+        /* ハンバーガーボタン */
+        #hamburger-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        #hamburger-btn:hover {
+            background: rgba(23, 107, 135, 0.1);
+        }
+
+        /* メインイメージ */
+        #Main {
+            height: 70vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('DNP 秀英初号明朝 Std_page-0001.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* セカンドセクション */
+        #Second {
+            padding: 30px 20px;
+            background: white;
+            position: relative;
+        }
+
+        #title-2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #176b87;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #bun-2 {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #555;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+
+        /* 出店紹介セクション */
+        .booth-slider-section {
+            padding: 40px 20px;
+            background: #f7faff;
+            margin: 0;
+        }
+
+        .booth-slider-title {
+            font-size: 2rem;
+            font-weight: 800;
+            text-align: center;
+            color: #176b87;
+            margin-bottom: 30px;
+        }
+
+        .booth-slider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            overflow: hidden;
+        }
+
+        .booth-slider-btn {
+            background: #e0f0ff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            color: #176b87;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .booth-slider-btn:hover {
+            background: #b3e0ff;
+            transform: scale(1.1);
+        }
+
+        .booth-slide {
+            width: calc(100vw - 130px);
+            min-height: 250px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+        }
+
+        .booth-slide-item {
+            min-width: 100%;
+            transition: transform 0.4s ease;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 20px;
+            text-align: center;
+            margin: 0 5px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .booth-slide-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #176b87;
+            font-weight: 700;
+        }
+
+        .booth-slide-prep {
+            font-size: 1.1rem;
+            color: #e07a00;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* 情報セクション */
+        .info-section {
+            padding: 40px 20px;
+            background: #fff8f0;
+            margin: 0;
+        }
+
+        .info-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            border-bottom: 3px solid #176b87;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            color: #176b87;
+        }
+
+        .info-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .info-map-link {
+            color: #0077cc;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #0077cc;
+            transition: color 0.3s;
+        }
+
+        .info-map-link:hover {
+            color: #005599;
+        }
+
+        .info-space {
+            height: 40px;
+        }
+
+        .info-list {
+            font-size: 0.95rem;
+            margin-left: 1.5em;
+            line-height: 2;
+        }
+
+        .info-list li {
+            margin-bottom: 8px;
+        }
+
+        .info-note {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 25px;
+            font-style: italic;
+        }
+
+        /* ハンバーガーメニュー */
+        .hamburger-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 2000;
+            pointer-events: none;
+        }
+
+        .hamburger-menu-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .hamburger-menu.open {
+            pointer-events: auto;
+        }
+
+        .hamburger-menu.open .hamburger-menu-bg {
+            opacity: 1;
+        }
+
+        .hamburger-menu-panel {
+            position: absolute;
+            top: 0;
+            left: -280px;
+            width: 280px;
+            height: 100vh;
+            background: white;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+            padding: 30px 20px;
+            transition: left 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .hamburger-menu.open .hamburger-menu-panel {
+            left: 0;
+        }
+
+        .hamburger-menu-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #176b87;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+        }
+
+        .hamburger-menu-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .hamburger-menu-list li a {
+            font-size: 1.2rem;
+            color: #176b87;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .hamburger-menu-list li a:hover {
+            color: #0a3c4c;
+        }
+
+        /* フッター */
+        #Footer {
+            background: #176b87;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .footer-link-img {
+            max-height: 60px;
+            filter: brightness(0) invert(1);
+        }
+
+        /* デスクトップ対応 */
+        @media (min-width: 768px) {
+            #header {
+                height: 70px;
+                left: 10%;
+                right: 10%;
+                top: 20px;
+            }
+
+            #header-text {
+                font-size: 1.5rem;
+            }
+
+            #Main {
+                height: 100vh;
+            }
+
+            #Second {
+                display: flex;
+                align-items: center;
+                padding: 60px 40px;
+                min-height: 100vh;
+            }
+
+            #White-Board1 {
+                flex: 1;
+                margin-right: 40px;
+                border-radius: 30px;
+                overflow: hidden;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            }
+
+            #gate {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            #2dane {
+                flex: 1;
+            }
+
+            #title-2 {
+                font-size: 3rem;
+                text-align: left;
+            }
+
+            #bun-2 {
+                font-size: 1.2rem;
+                margin-top: 30px;
+            }
+
+            .booth-slider-section {
+                padding: 80px 60px;
+                max-width: 1400px;
+                margin: 60px auto;
+                border-radius: 30px;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            }
+
+            .booth-slider-title {
+                font-size: 3rem;
+            }
+
+            .booth-slider {
+                gap: 30px;
+            }
+
+            .booth-slider-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+            }
+
+            .booth-slide {
+                width: 900px;
+                min-height: 400px;
+            }
+
+            .booth-slide-item {
+                padding: 50px 30px;
+            }
+
+            .booth-slide-item h3 {
+                font-size: 2rem;
+            }
+
+            .info-section {
+                padding: 80px 60px;
+                max-width: 1200px;
+                margin: 60px auto 0;
+                border-radius: 30px;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            }
+
+            .info-title {
+                font-size: 2.5rem;
+            }
+
+            .info-text {
+                font-size: 1.3rem;
+            }
+
+            .hamburger-menu-panel {
+                width: 320px;
+                left: -320px;
+                padding: 40px 30px;
+            }
+
+            .hamburger-menu-list li a {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* 大画面対応 */
+        @media (min-width: 1200px) {
+            #header {
+                left: 15%;
+                right: 15%;
+            }
+
+            .booth-slider-section,
+            .info-section {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        /* エラーハンドリング用のスタイル */
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px;
+            border-left: 4px solid #c33;
+            display: none;
+        }
+
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        /* アクセシビリティ */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- エラーメッセージ表示エリア -->
+    <div id="error-container" class="error-message" role="alert" aria-live="polite"></div>
+
     <!-- ハンバーガーメニュー -->
-    <nav id="hamburger-menu" class="hamburger-menu">
+    <nav id="hamburger-menu" class="hamburger-menu" role="navigation" aria-label="メインメニュー">
         <div class="hamburger-menu-bg" id="hamburger-bg"></div>
         <div class="hamburger-menu-panel">
-            <button class="hamburger-menu-close" id="hamburger-close">×</button>
+            <button class="hamburger-menu-close" id="hamburger-close" aria-label="メニューを閉じる">×</button>
             <ul class="hamburger-menu-list">
                 <li><a href="#header" id="menu-home">ホーム</a></li>
                 <li><a href="#booth-slide" id="menu-booth">出店紹介</a></li>
@@ -31,87 +492,83 @@
             </ul>
         </div>
     </nav>
-    <div id="header">
+
+    <!-- ヘッダー -->
+    <header id="header">
         <h1 id="header-text">第78回　高輪学園高学祭</h1>
-        <div id="header-logo">
-                        <button id="hamburger-btn" aria-label="メニューを開く" style="background:none;border:none;padding:0;cursor:pointer;display:flex;align-items:center;justify-content:center;height:70px;width:70px;">
-                                <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect y="10" width="44" height="4" rx="2" fill="#176b87"/>
-                                    <rect y="20" width="44" height="4" rx="2" fill="#176b87"/>
-                                    <rect y="30" width="44" height="4" rx="2" fill="#176b87"/>
-                                </svg>
-                        </button>
-        </div>
-        
-    </div>
-    <div id="Main">
-    <img src="DNP 秀英初号明朝 Std_page-0001.jpg" id="Img1">
-    </div>
-    <div id="Second">
-        <div id="White-Board1">
-            <img id="gate" src="IMG_6479.png">
+        <button id="hamburger-btn" aria-label="メニューを開く" aria-expanded="false">
+            <svg width="32" height="32" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect y="10" width="44" height="4" rx="2" fill="#176b87"/>
+                <rect y="20" width="44" height="4" rx="2" fill="#176b87"/>
+                <rect y="30" width="44" height="4" rx="2" fill="#176b87"/>
+            </svg>
+        </button>
+    </header>
+
+    <!-- メインビジュアル -->
+    <main id="Main" role="main">
+        <!-- メイン画像のコンテンツ -->
+    </main>
+
+    <!-- セカンドセクション -->
+    <section id="Second">
+        <div id="White-Board1" style="display: none;">
+            <img id="gate" src="IMG_6479.png" alt="高輪学園の門" loading="lazy">
         </div>
         <div id="2dane">
-            <h1 id="title-2">初風とは</h1>
-            <p>
-            <h2 id="bun-2">第78回高学祭のテーマである「初風」には、新たな季節の訪れの最初に吹く風という意味があります。そして今年、高輪学園は140周年という節目の年を迎えるにあたり、今年の高学祭が高輪学園の「初風」となって欲しいと思い、このようなテーマとなりました。加えて、今年は来場者10000人を目標に掲げております。昨年、一昨年と9000人前後のお客様にご来場頂けております、なので今年こそ大台の10000人を達成したいと思っておりますので、ぜひご来場ください。</h2> 
-        </div>   
-    </div>
-    <!-- アクセス・禁止事項セクション ここから -->
-    <div style="height:64px;"></div>
-    <div class="info-section">
-    <!-- 出店紹介スライドショーゾーン ここから -->
-    <div class="booth-slider-section">
+            <h2 id="title-2">初風とは</h2>
+            <p id="bun-2">
+                第78回高学祭のテーマである「初風」には、新たな季節の訪れの最初に吹く風という意味があります。そして今年、高輪学園は140周年という節目の年を迎えるにあたり、今年の高学祭が高輪学園の「初風」となって欲しいと思い、このようなテーマとなりました。加えて、今年は来場者10000人を目標に掲げております。昨年、一昨年と9000人前後のお客様にご来場頂けておりますので、今年こそ大台の10000人を達成したいと思っておりますので、ぜひご来場ください。
+            </p>
+        </div>
+    </section>
+
+    <!-- 出店紹介スライドショー -->
+    <section class="booth-slider-section">
         <h2 class="booth-slider-title">出店紹介</h2>
         <div class="booth-slider">
-            <button class="booth-slider-btn" id="booth-prev">&#9664;</button>
+            <button class="booth-slider-btn" id="booth-prev" aria-label="前のスライド">&#9664;</button>
             <div class="booth-slide" id="booth-slide">
-                <!-- 中一スライド -->
                 <div class="booth-slide-item">
                     <h3>中一の出店</h3>
-                    <ul style="display:none;"></ul>
                     <div class="booth-slide-prep">準備中</div>
                 </div>
-                <!-- 中二スライド -->
                 <div class="booth-slide-item">
                     <h3>中二の出店</h3>
-                    <ul style="display:none;"></ul>
                     <div class="booth-slide-prep">準備中</div>
                 </div>
-                <!-- 中三スライド -->
                 <div class="booth-slide-item">
                     <h3>中三の出店</h3>
-                    <ul style="display:none;"></ul>
                     <div class="booth-slide-prep">準備中</div>
                 </div>
-                <!-- 高一スライド -->
                 <div class="booth-slide-item">
                     <h3>高一の出店</h3>
-                    <ul style="display:none;"></ul>
                     <div class="booth-slide-prep">準備中</div>
                 </div>
-                <!-- 高二スライド -->
                 <div class="booth-slide-item">
                     <h3>高二の出店</h3>
-                    <ul style="display:none;"></ul>
                     <div class="booth-slide-prep">準備中</div>
                 </div>
             </div>
-            <button class="booth-slider-btn" id="booth-next">&#9654;</button>
+            <button class="booth-slider-btn" id="booth-next" aria-label="次のスライド">&#9654;</button>
         </div>
-    </div>
-    <!-- 出店紹介スライドショーゾーン ここまで -->
+    </section>
+
+    <!-- アクセス・禁止事項セクション -->
+    <section class="info-section" id="access">
         <h2 class="info-title">アクセス</h2>
-        <p class="info-text">
-            <b>会場：</b>高輪学園<br>
-            <b>住所：</b>東京都港区高輪2-1-32<br>
-            <b>最寄り駅：</b>
-            都営浅草線「泉岳寺駅」徒歩5分／
-            JR「高輪ゲートウェイ駅」徒歩10分／
+        <div class="info-text">
+            <strong>会場：</strong>高輪学園<br>
+            <strong>住所：</strong>東京都港区高輪2-1-32<br>
+            <strong>最寄り駅：</strong><br>
+            都営浅草線「泉岳寺駅」徒歩5分<br>
+            JR「高輪ゲートウェイ駅」徒歩10分<br>
             東京メトロ南北線・都営三田線「白金高輪駅」徒歩10分<br>
             <a href="https://maps.app.goo.gl/2Qw8k8k8k8k8k8k8A" target="_blank" rel="noopener noreferrer" class="info-map-link">Googleマップで見る</a>
-        </p>
+        </div>
+        
         <div class="info-space"></div>
+        
         <h2 class="info-title">禁止事項</h2>
         <ul class="info-list">
             <li>危険物の持ち込み</li>
@@ -121,90 +578,283 @@
             <li>その他、運営が不適切と判断した行為</li>
         </ul>
         <p class="info-note">ご理解とご協力をお願いいたします。</p>
-    </div>
-    <!-- アクセス・禁止事項セクション ここまで -->
-    <div id="Footer">
+    </section>
+
+    <!-- フッター -->
+    <footer id="Footer">
         <div id="Footer-logo">
-            <a href="https://www.takanawa.ed.jp">
-                <img class="footer-link-img" src="takanawa_logo.svg">
+            <a href="https://www.takanawa.ed.jp" target="_blank" rel="noopener noreferrer">
+                <img class="footer-link-img" src="takanawa_logo.svg" alt="高輪学園" loading="lazy">
             </a>
         </div>
-        <div id="sitemap">
-            
-        </div>
-    </div>
-</body>
-<script>
-// メニュー内ボタンのスムーズスクロール
-function scrollToId(id) {
-    const el = document.getElementById(id);
-    if (el) {
-        el.scrollIntoView({behavior: 'smooth'});
-        if (menu) menu.classList.remove('open');
-    }
-}
-const menuHome = document.getElementById('menu-home');
-const menuBooth = document.getElementById('menu-booth');
-const menuAccess = document.getElementById('menu-access');
-const menuFooter = document.getElementById('menu-footer');
-if (menuHome) menuHome.onclick = e => { e.preventDefault(); scrollToId('header'); };
-if (menuBooth) menuBooth.onclick = e => { e.preventDefault(); scrollToId('booth-slide'); };
-if (menuAccess) menuAccess.onclick = e => { e.preventDefault(); scrollToId('access'); };
-if (menuFooter) menuFooter.onclick = e => { e.preventDefault(); scrollToId('Footer'); };
-// ハンバーガーメニュー開閉
-const humBtn = document.getElementById('hamburger-btn');
-const menu = document.getElementById('hamburger-menu');
-const closeBtn = document.getElementById('hamburger-close');
-const bg = document.getElementById('hamburger-bg');
-if (humBtn && menu && closeBtn && bg) {
-    humBtn.onclick = () => menu.classList.add('open');
-    closeBtn.onclick = () => menu.classList.remove('open');
-    bg.onclick = () => menu.classList.remove('open');
-}
-// 出店紹介スライドショー強化版（バグ修正）
-const slide = document.getElementById('booth-slide');
-let idx = 0;
-function getSlides() {
-    return slide ? Array.from(slide.children) : [];
-}
-function updateSlide() {
-    const items = getSlides();
-    items.forEach((el, i) => {
-        el.style.transform = `translateX(${(i-idx)*100}%)`;
-        el.style.opacity = (i === idx) ? '1' : '0.5';
-        el.style.zIndex = (i === idx) ? '2' : '1';
-    });
-}
-if (slide && getSlides().length > 0) {
-    updateSlide();
-    document.getElementById('booth-prev').onclick = () => {
-        const items = getSlides();
-        idx = (idx - 1 + items.length) % items.length;
-        updateSlide();
-    };
-    document.getElementById('booth-next').onclick = () => {
-        const items = getSlides();
-        idx = (idx + 1) % items.length;
-        updateSlide();
-    };
-    // スワイプ対応（スマホ用）
-    let startX = null;
-    slide.addEventListener('touchstart', e => {
-        startX = e.touches[0].clientX;
-    });
-    slide.addEventListener('touchend', e => {
-        if (startX === null) return;
-        let endX = e.changedTouches[0].clientX;
-        const items = getSlides();
-        if (endX - startX > 50) {
-            idx = (idx - 1 + items.length) % items.length;
-            updateSlide();
-        } else if (startX - endX > 50) {
-            idx = (idx + 1) % items.length;
-            updateSlide();
+    </footer>
+
+    <script>
+        // エラーハンドリング機能
+        function showError(message) {
+            const errorContainer = document.getElementById('error-container');
+            if (errorContainer) {
+                errorContainer.textContent = message;
+                errorContainer.style.display = 'block';
+                setTimeout(() => {
+                    errorContainer.style.display = 'none';
+                }, 5000);
+            }
         }
-        startX = null;
-    });
-}
-</script>
+
+        // 安全な要素取得関数
+        function safeGetElement(id) {
+            try {
+                return document.getElementById(id);
+            } catch (error) {
+                console.error(`要素の取得に失敗しました: ${id}`, error);
+                showError('ページの読み込みに問題が発生しました。');
+                return null;
+            }
+        }
+
+        // スムーズスクロール機能（エラーハンドリング付き）
+        function scrollToId(id) {
+            try {
+                const el = safeGetElement(id);
+                const menu = safeGetElement('hamburger-menu');
+                
+                if (el) {
+                    el.scrollIntoView({behavior: 'smooth'});
+                    if (menu) menu.classList.remove('open');
+                } else {
+                    showError('指定されたセクションが見つかりませんでした。');
+                }
+            } catch (error) {
+                console.error('スクロールエラー:', error);
+                showError('スクロールに失敗しました。');
+            }
+        }
+
+        // メニュー内ボタンのイベントリスナー設定
+        function setupMenuButtons() {
+            try {
+                const menuItems = [
+                    {id: 'menu-home', target: 'header'},
+                    {id: 'menu-booth', target: 'booth-slide'},
+                    {id: 'menu-access', target: 'access'},
+                    {id: 'menu-footer', target: 'Footer'}
+                ];
+
+                menuItems.forEach(item => {
+                    const element = safeGetElement(item.id);
+                    if (element) {
+                        element.onclick = (e) => {
+                            e.preventDefault();
+                            scrollToId(item.target);
+                        };
+                    }
+                });
+            } catch (error) {
+                console.error('メニューボタンの設定エラー:', error);
+                showError('メニューの設定に失敗しました。');
+            }
+        }
+
+        // ハンバーガーメニューの開閉機能
+        function setupHamburgerMenu() {
+            try {
+                const humBtn = safeGetElement('hamburger-btn');
+                const menu = safeGetElement('hamburger-menu');
+                const closeBtn = safeGetElement('hamburger-close');
+                const bg = safeGetElement('hamburger-bg');
+
+                if (humBtn && menu && closeBtn && bg) {
+                    humBtn.onclick = () => {
+                        menu.classList.add('open');
+                        humBtn.setAttribute('aria-expanded', 'true');
+                    };
+                    
+                    closeBtn.onclick = () => {
+                        menu.classList.remove('open');
+                        humBtn.setAttribute('aria-expanded', 'false');
+                    };
+                    
+                    bg.onclick = () => {
+                        menu.classList.remove('open');
+                        humBtn.setAttribute('aria-expanded', 'false');
+                    };
+
+                    // ESCキーでメニューを閉じる
+                    document.addEventListener('keydown', (e) => {
+                        if (e.key === 'Escape' && menu.classList.contains('open')) {
+                            menu.classList.remove('open');
+                            humBtn.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                }
+            } catch (error) {
+                console.error('ハンバーガーメニューの設定エラー:', error);
+                showError('メニュー機能の設定に失敗しました。');
+            }
+        }
+
+        // スライドショー機能（強化版エラーハンドリング）
+        function setupSlideshow() {
+            try {
+                const slide = safeGetElement('booth-slide');
+                if (!slide) return;
+
+                let idx = 0;
+                let isTransitioning = false;
+
+                function getSlides() {
+                    return slide ? Array.from(slide.children) : [];
+                }
+
+                function updateSlide() {
+                    try {
+                        const items = getSlides();
+                        if (items.length === 0) return;
+
+                        items.forEach((el, i) => {
+                            if (el) {
+                                el.style.transform = `translateX(${(i-idx)*100}%)`;
+                                el.style.opacity = (i === idx) ? '1' : '0.5';
+                                el.style.zIndex = (i === idx) ? '2' : '1';
+                            }
+                        });
+                        isTransitioning = false;
+                    } catch (error) {
+                        console.error('スライド更新エラー:', error);
+                        isTransitioning = false;
+                    }
+                }
+
+                function changeSlide(direction) {
+                    if (isTransitioning) return;
+                    isTransitioning = true;
+
+                    const items = getSlides();
+                    if (items.length === 0) return;
+
+                    if (direction === 'next') {
+                        idx = (idx + 1) % items.length;
+                    } else {
+                        idx = (idx - 1 + items.length) % items.length;
+                    }
+                    updateSlide();
+                }
+
+                // 初期化
+                updateSlide();
+
+                // ボタンイベント
+                const prevBtn = safeGetElement('booth-prev');
+                const nextBtn = safeGetElement('booth-next');
+
+                if (prevBtn) {
+                    prevBtn.onclick = () => changeSlide('prev');
+                }
+
+                if (nextBtn) {
+                    nextBtn.onclick = () => changeSlide('next');
+                }
+
+                // タッチイベント（スワイプ対応）
+                let startX = null;
+                let startY = null;
+
+                slide.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                }, {passive: true});
+
+                slide.addEventListener('touchend', (e) => {
+                    if (startX === null || startY === null) return;
+
+                    const endX = e.changedTouches[0].clientX;
+                    const endY = e.changedTouches[0].clientY;
+                    const diffX = endX - startX;
+                    const diffY = endY - startY;
+
+                    // 縦スクロールを優先
+                    if (Math.abs(diffY) > Math.abs(diffX)) {
+                        startX = null;
+                        startY = null;
+                        return;
+                    }
+
+                    if (Math.abs(diffX) > 50) {
+                        if (diffX > 0) {
+                            changeSlide('prev');
+                        } else {
+                            changeSlide('next');
+                        }
+                    }
+
+                    startX = null;
+                    startY = null;
+                }, {passive: true});
+
+                // 自動スライド（オプション）
+                // setInterval(() => {
+                //     if (!isTransitioning) {
+                //         changeSlide('next');
+                //     }
+                // }, 5000);
+
+            } catch (error) {
+                console.error('スライドショーの設定エラー:', error);
+                showError('スライドショー機能の設定に失敗しました。');
+            }
+        }
+
+        // 画像の遅延読み込みエラーハンドリング
+        function setupImageErrorHandling() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.onerror = function() {
+                    this.style.display = 'none';
+                    console.warn(`画像の読み込みに失敗しました: ${this.src}`);
+                };
+            });
+        }
+
+        // デスクトップでの門画像表示
+        function setupDesktopGate() {
+            const whiteBoard = safeGetElement('White-Board1');
+            if (whiteBoard && window.innerWidth >= 768) {
+                whiteBoard.style.display = 'block';
+            }
+
+            window.addEventListener('resize', () => {
+                if (whiteBoard) {
+                    whiteBoard.style.display = window.innerWidth >= 768 ? 'block' : 'none';
+                }
+            });
+        }
+
+        // 初期化処理
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                setupMenuButtons();
+                setupHamburgerMenu();
+                setupSlideshow();
+                setupImageErrorHandling();
+                setupDesktopGate();
+            } catch (error) {
+                console.error('初期化エラー:', error);
+                showError('ページの初期化に失敗しました。リロードしてください。');
+            }
+        });
+
+        // グローバルエラーハンドリング
+        window.addEventListener('error', function(e) {
+            console.error('JavaScript エラー:', e.error);
+            showError('予期しないエラーが発生しました。');
+        });
+
+        // 未処理のPromise拒否をキャッチ
+        window.addEventListener('unhandledrejection', function(e) {
+            console.error('未処理のPromise拒否:', e.reason);
+            showError('処理中にエラーが発生しました。');
+        });
+    </script>
 </body>
+</html>
