@@ -157,7 +157,7 @@
             background: white;
             border-radius: 20px;
             text-align: center;
-            margin: 5px 5px;
+            margin: 5px 0.5px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
@@ -952,7 +952,7 @@
                         items.forEach((el, i) => {
                             if (el) {
                                 //el.style.transform = `translateX(${(i-idx)*100}%)`;
-                                el.style.transform = `translateX(${(-idx)*101}%)`;
+                                el.style.transform = `translateX(${(-idx)*100}%)`;
                                 el.style.opacity = (i === idx) ? '1' : '1';
                                 //el.style.opacity = (i === idx) ? '1' : '0.5';
                                 el.style.zIndex = (i === idx) ? '2' : '1';
